@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="stats">
+        <table>
+        <tr id="strPlayer"></tr>
+        <tr id="dexPlayer"></tr>
+        <tr id="vitPlayer"></tr>
+        </table>
+    </div>
+    <button class="battle" onclick="battle()" id="battle">Lutar</button><br>
+    <button class="spawnMonster" onclick="spawnMonster()" id="spawnMonster">Procurar monstro</button>
+    <div id="response"></div>
+    <div id="enemy"></div>
+    <button class="createMonster" onclick="createMonster()" id="createMonster">Criar monstro</button><br>
+    <input class="nameMonster" hidden placeholder="Nome do Monstro" id="nameMonster"><br>
+    <input class="minStats" hidden type="number" placeholder="Mínimo de Status" id="minStats"><br>
+    <input class="maxStats" hidden type="number" placeholder="Máximo de Status" id="maxStats"><br>
+    <button class="sendMonster" hidden onclick="verifyNewMonster()" id="sendMonster">Enviar Monstro</button>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
