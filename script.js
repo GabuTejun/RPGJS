@@ -1,17 +1,24 @@
 let player = {
-    str: 2,
-    dex: 2,
-    vit: 2,
+    strBase: 2,
+    dexBase: 2,
+    vitBase: 2,
+    vit: 0,
+    dex: 0,
+    str: 0,
     expPlayer: 0,
     expForLevelUp: 10,
     levelPlayer: 1,
+    statsUp: 0,
 };
 let enemys = [{
     nameMonster: "Slime",
     minStats: 2,
     maxStats: 5,
 }];
-playerStats()
+player.vit = player.vitBase
+player.str = player.strBase
+player.dex = player.dexBase
+playerStats("hidden")
 
 function createMonster() {
     document.getElementById('nameMonster').hidden = false;
@@ -72,24 +79,24 @@ function battle() {
     }
 
     document.getElementById('enemy').innerHTML = "Monstro : " + enemys[enemy].nameMonster + "<br>Força = " + strMonster + "<br>Defesa = " + dexMonster + "<br>Vida = " + vitMonster
-    playerStats()
+    playerStats("hidden")
 
     if (vitMonster <= 0){
         player.expPlayer += expMonster
-
+        player.vit = player.vitBase
+        spawnMonster()
+        playerStats("hidden")
 
         if (player.expPlayer >= player.expForLevelUp){
             player.levelPlayer += 1
             player.expPlayer = 0
             player.expForLevelUp = Math.round(player.expForLevelUp * 1.5)
-            document.getElementById('strUp').hidden = false
-            document.getElementById('dexUp').hidden = false
-            document.getElementById('vitUp').hidden = false
-            let up = player.levelPlayer
-            while (up > 0){
-                
-            }
+            playerStats()
+            player.statsUp = player.levelPlayer
+            document.getElementById('spawnMonster').disabled = true
+            document.getElementById('battle').disabled = true
         }
+        
     }
 
     if (player.vit <= 0){
@@ -97,16 +104,27 @@ function battle() {
     }
 
     console.log(player.expPlayer, player.expForLevelUp, player.levelPlayer)
-
+    console.log(player.statsUp)
 }
 
 
-function playerStats() {
-    document.getElementById('strPlayer').innerHTML = "Força = " + player.str + "<button id='strUp' hidden onclick='statsUp(`str`)'>+</button>"
-    document.getElementById('dexPlayer').innerHTML = "Defesa = " + player.dex + "<button id='dexUp' hidden onclick='statsUp(`dex`)'>+</button>"
-    document.getElementById('vitPlayer').innerHTML = "Vida = " + player.vit + "<button id='vitUp' hidden onclick='statsUp(`vit`)'>+</button>"
+function playerStats(hidden) {
+    document.getElementById('strPlayer').innerHTML = "Força = " + player.str + "<button id='strUp' " + hidden + " onclick='statsUp(`strBase`)'>+</button>"
+    document.getElementById('dexPlayer').innerHTML = "Defesa = " + player.dex + "<button id='dexUp' " + hidden + " onclick='statsUp(`dexBase`)'>+</button>"
+    document.getElementById('vitPlayer').innerHTML = "Vida = " + player.vit + "<button id='vitUp' " + hidden + " onclick='statsUp(`vitBase`)'>+</button>"
 }
 
 function statsUp(stat) {
+    
     player[stat] += 1
+    player.statsUp = player.statsUp-1
+    player.vit = player.vitBase
+    player.str = player.strBase
+    player.dex = player.dexBase
+    playerStats()
+    if (player.statsUp == 0) {
+        playerStats("hidden")
+        document.getElementById('spawnMonster').disabled = false
+        document.getElementById('battle').disabled = false
+    }
 }
