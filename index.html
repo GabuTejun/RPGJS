@@ -8,22 +8,37 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="stats">
-        <table>
-        <tr id="strPlayer"></tr>
-        <tr id="dexPlayer"></tr>
-        <tr id="vitPlayer"></tr>
-        </table>
+    <div id="container">
+        <div id="stats">
+            <table>
+                <tr id="level"></tr>
+                <tr id="strPlayer"></tr>
+                <tr id="dexPlayer"></tr>
+                <tr id="vitPlayer"></tr>
+                <tr id="exp"></tr>
+            </table>
+        </div>
+        <div id="actionsPlayer">
+            <button class="battle" onclick="battle()" disabled id="battle">Lutar</button><br>
+            <button class="spawnMonster" onclick="spawnMonster()" id="spawnMonster">Procurar monstro</button>
+        </div>
+        <div id="monster">
+            <div id="enemy"></div>
+        </div>
     </div>
-    <button class="battle" onclick="battle()" id="battle">Lutar</button><br>
-    <button class="spawnMonster" onclick="spawnMonster()" id="spawnMonster">Procurar monstro</button>
-    <div id="response"></div>
-    <div id="enemy"></div>
-    <button class="createMonster" onclick="createMonster()" id="createMonster">Criar monstro</button><br>
-    <input class="nameMonster" hidden placeholder="Nome do Monstro" id="nameMonster"><br>
-    <input class="minStats" hidden type="number" placeholder="Mínimo de Status" id="minStats"><br>
-    <input class="maxStats" hidden type="number" placeholder="Máximo de Status" id="maxStats"><br>
-    <button class="sendMonster" hidden onclick="verifyNewMonster()" id="sendMonster">Enviar Monstro</button>
+
+    <button id="save" onclick="savePlayer()">Salvar</button>
+    <button id="load" onclick="loadPlayer()">Carregar</button>
+    
+    <div id="devMonster">
+        <button class="createMonster" onclick="createMonster()" id="createMonster">Criar monstro</button><br>
+        <div id="response"></div>
+        <input class="nameMonster" hidden placeholder="Nome do Monstro" id="nameMonster"><br>
+        <input class="minStats" hidden type="number" placeholder="Mínimo de Status" id="minStats"><br>
+        <input class="maxStats" hidden type="number" placeholder="Máximo de Status" id="maxStats"><br>
+        <button class="sendMonster" hidden onclick="verifyNewMonster()" id="sendMonster">Enviar Monstro</button>
+    </div>
+    
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

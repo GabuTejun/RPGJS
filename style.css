@@ -1,3 +1,32 @@
 #stats {
     font-size: 30px;
+    border-color: rgb(150, 0, 0);
+    background-color: rgb(255, 0, 0);
+    border-style: solid;
+    border-width: 5px;
 }
+
+#container {
+    display: flex;
+}
+
+#container button {
+    border-color: black;
+    background-color: gray;
+    width: 100px;
+}
+
+#container tr {
+    background-color: gray;
+}
+
+#actionsPlayer {
+    font-size: 30px;
+}
+
+#enemy {
+    font-size: 30px;
+
+}
+
+#devMonster {}
